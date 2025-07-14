@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | OnBet</title>
+  <link rel="stylesheet" href="/static/css/index.css">
+  <script src="/static/js/admin.js" defer></script>
+  <script src="/static/js/cliente.js" defer></script>
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="login-form">
+      <input type="text" id="username" placeholder="Usuário" required>
+      <input type="password" id="password" placeholder="Senha" required>
+      <div id="token-container" style="display: none;">
+        <input id="input-token" placeholder="Token">
+        <button type="button" onclick="enviarToken()">📤 Enviar token</button>
+      </div>
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('username').addEventListener('input', () => {
+      const user = document.getElementById('username').value.trim();
+      document.getElementById('token-container').style.display =
+        user.toLowerCase() === 'admin' ? 'none' : 'block';
+    });
+
+    document.getElementById('login-form').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      const token = document.getElementById('input-token').value.trim();
+
+      if (user === 'admin' && pass === 'admin') {
+        window.location.href = "/html/admin.html";
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:5000/validar_login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: user, nome: pass, token })
+        });
+        const dados = await response.json();
+        if (dados.status === "Autenticação válida") {
+          window.location.href = `/html/cliente.html?id=${user}`;
+        } else {
+          alert("❌ Erro: " + (dados.erro || "Token inválido ou expirado."));
+        }
+      } catch (err) {
+        console.error("Erro na requisição:", err);
+        alert("❌ Falha na conexão com o servidor.");
+      }
+    });
+  </script>
+</body>
+</html>

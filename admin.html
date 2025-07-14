@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PAINEL DO ADMINISTRADOR | ONBET</title>
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <script src="/static/js/admin.js" defer></script>
+    <script src="/static/js/cliente.js" defer></script>
+    <link rel="icon" href="data:,">
+
+</head>
+<body>
+    <header>
+        <img src="/static/img/logoDois.png" alt="Logo">
+        <h1 class="faixa-vermelha">PAINEL DO ADMINISTRADOR | ONBET</h1>
+    </header>
+
+    <section class="botoes-topo">
+        <button onclick="gerarAleatorios()">Gerar Clientes Aleatórios</button>
+        <button onclick="gerarDuplicados()">Gerar Clientes Duplicados</button>
+    </section>
+
+    <section class="botoes-interacao">
+        <button onclick="abrirAdicionarCliente()">+ Adicionar Cliente</button>
+        <button onclick="abrirNovoLancamento()">Novo Lançamento</button>
+    </section>
+
+<div id="overlay-adicionar" class="overlay" style="display:none;">
+    <div class="overlay-content">
+        <h3>Adicionar Cliente</h3>
+        <input type="text" id="nome-cliente" placeholder="Nome">
+        <input type="text" id="id-cliente" readonly>
+        <input type="text" id="data-cliente" readonly>
+        <input type="number" id="valor-cliente" placeholder="Valor">
+        <button onclick="salvarNovoCliente()">Salvar Cliente</button>
+        <button onclick="fecharOverlay('overlay-adicionar')">Cancelar</button>
+    </div>
+</div>
+
+<div id="overlay-lancamento" class="overlay" style="display:none;">
+    <div class="overlay-content">
+        <h3>Novo Lançamento</h3>
+        <select id="cliente-select"></select>
+        <input type="number" id="valor-lancamento" placeholder="Valor">
+        <button onclick="salvarLancamento()">Salvar</button>
+        <button onclick="fecharOverlay('overlay-lancamento')">Cancelar</button>
+    </div>
+</div>
+
+<section class="filtro">
+    <input type="text" id="filtro" placeholder="Filtrar por Nome ou ID">
+    <button onclick="buscarCliente()">Buscar</button>
+    <button onclick="limparFiltro()">Limpar Filtro</button>
+</section>
+
+<section class="filtro-semana">
+    <input type="text" id="data-inicio" placeholder="Início (dd/mm/aaaa)">
+    <input type="text" id="data-fim" placeholder="Fim (dd/mm/aaaa)">
+    <button onclick="filtrarSemana()">Filtrar Semana</button>
+</section>
+
+<section id="tabela-principal"></section>
+<section id="tabela-cliente" style="display:none;"></section>
+
+<section id="tabela-duplicados" style="display:none;">
+    <h3>Clientes Duplicados</h3>
+    <table>
+        <thead>
+            <tr><th>ID</th><th>Nome</th><th>Data</th><th>Valor</th><th>Ações</th></tr>
+        </thead>
+        <tbody id="duplicados-body"></tbody>
+    </table>
+</section>
+
+<button onclick="exportarTodosCSV()">Exportar Todos os CSVs</button>
+
+</body>
+</html>

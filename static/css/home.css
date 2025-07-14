@@ -1,0 +1,109 @@
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .topo-logo {
+      padding: 12px;
+      text-align: center;
+      background-color: white;
+    }
+
+    .topo-logo img {
+      height: 50px;
+      vertical-align: top;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(255, 255, 255, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+
+    .loading-text {
+      font-size: 20px;
+      font-weight: bold;
+      animation: pulse 1.5s infinite;
+    }
+
+    .table-header {
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 1rem 0;
+      font-size: 16px;
+      font-weight: 600;
+      gap: 24px;
+    }
+
+    .nav-btn {
+      padding: 8px;
+      border-radius: 50%;
+      background-color: #f0f0f0;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .nav-btn:hover {
+      background-color: #e0e0e0;
+    }
+
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      width: 100%;
+      max-width: 500px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    .comBorda {
+      border: 1px solid #000000;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .footer-space {
+      margin-top: 20px;
+    }
+
+.linha-green td {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.linha-red td {
+  background-color: #f8d7da;
+  color: #721c24;
+
+}
+
+.linha-yellow td {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.linha-blue td {
+  background-color: white;
+  color: black;
+;
+}
+
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cliente | ONBET</title>
+  <link rel="stylesheet" href="/static/css/home.css">
+  <script src="/static/js/admin.js" defer></script>
+  <script src="/static/js/cliente.js" defer></script>
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <img src="/static/img/logoVetor.png" alt="Logo">
+  <h2 id="titulo-cliente">Planilha do Cliente</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th><th>NOME</th><th>VALOR</th><th>ODDS</th><th>EVENTO</th><th>STATUS</th>
+      </tr>
+    </thead>
+    <tbody id="cliente-tabela">
+      <tr><td colspan="6">Carregando...</td></tr>
+    </tbody>
+  </table>
+
+  <script>
+    const url = new URLSearchParams(window.location.search);
+    const id = url.get("id");
+
+    if (id) {
+      document.getElementById("titulo-cliente").textContent = "Planilha do Cliente: " + id;
+      const cliente = JSON.parse(localStorage.getItem(id));
+      if (cliente) {
+        const tbody = document.getElementById("cliente-tabela");
+        tbody.innerHTML = `
+          <tr>
+            <td>${cliente.id}</td>
+            <td>${cliente.nome}</td>
+            <td>${cliente.valor}</td>
+            <td>${cliente.odds || ""}</td>
+            <td><button onclick="editarEvento(this)">Evento</button><span class="evento-texto">${cliente.evento || ""}</span></td>
+            <td>${cliente.status || "Default"}</td>
+          </tr>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>
