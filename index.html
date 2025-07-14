@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Login | OnBet</title>
-  <link rel="stylesheet" href="/static/css/index.css">
-  <script src="/static/js/admin.js" defer></script>
-  <script src="/static/js/cliente.js" defer></script>
+  <!-- Correção do caminho do CSS (removi a barra inicial) -->
+  <link rel="stylesheet" href="css/index.css">
+  
+  <!-- Correção dos caminhos JS (assumindo que estão na pasta js) -->
+  <script src="js/admin.js" defer></script>
+  <script src="js/cliente.js" defer></script>
+  
   <link rel="icon" href="data:,">
 </head>
 <body>
@@ -35,8 +39,9 @@
       const pass = document.getElementById('password').value.trim();
       const token = document.getElementById('input-token').value.trim();
 
+      // Correção dos redirecionamentos (ajustando para a estrutura real)
       if (user === 'admin' && pass === 'admin') {
-        window.location.href = "/html/admin.html";
+        window.location.href = "admin.html";  // Removi /html/
         return;
       }
 
@@ -48,7 +53,7 @@
         });
         const dados = await response.json();
         if (dados.status === "Autenticação válida") {
-          window.location.href = `/html/cliente.html?id=${user}`;
+          window.location.href = `cliente.html?id=${user}`;  // Removi /html/
         } else {
           alert("❌ Erro: " + (dados.erro || "Token inválido ou expirado."));
         }
@@ -57,6 +62,17 @@
         alert("❌ Falha na conexão com o servidor.");
       }
     });
+
+    // Adicionei a função enviarToken() que estava sendo chamada mas não definida
+    function enviarToken() {
+      const token = document.getElementById('input-token').value.trim();
+      if (!token) {
+        alert("Por favor, insira um token válido");
+        return;
+      }
+      // Adicione aqui a lógica para enviar o token
+      alert("Token enviado: " + token);
+    }
   </script>
 </body>
 </html>
